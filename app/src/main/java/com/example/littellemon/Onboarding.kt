@@ -46,78 +46,7 @@ import com.example.littellemon.ui.theme.HighlightBlack
 import com.example.littellemon.ui.theme.PrimaryGreen
 import com.example.littellemon.ui.theme.PrimaryYellow
 
-//
-//@Composable
-//fun Onboarding(context: Context, navController: NavHostController) {
-//    val firstName = remember {
-//        mutableStateOf("")
-//    }
-//    val lastName = remember {
-//        mutableStateOf("")
-//    }
-//    val email = remember {
-//        mutableStateOf("")
-//    }
-//    Column(modifier = Modifier. verticalScroll(rememberScrollState()).fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-//        Image(painter = painterResource(R.drawable.logo),"logo", modifier = Modifier.size(width = 200.dp, height = 100.dp))
-//TextField(
-//    value = firstName.value,
-//    onValueChange = {
-//        firstName.value = it
-//    }
-//)
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//        TextField(
-//            value = firstName.value,
-//            onValueChange = {
-//                firstName.value = it
-//            }
-//        )
-//    }
-//
-//
-//}
+
 @Composable
 fun Onboarding(context: Context, navController: NavHostController) {
     val  sharedPreferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
