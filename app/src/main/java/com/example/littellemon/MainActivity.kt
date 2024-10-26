@@ -1,47 +1,61 @@
 package com.example.littellemon
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.littellemon.ui.theme.LittellemonTheme
 
 class MainActivity : ComponentActivity() {
+    val sharedPreferences by lazy { getSharedPreferences("Little Lemon", MODE_PRIVATE) }
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             LittellemonTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    val navController = rememberNavController()
+                    NavigationComposable(context = applicationContext,navController = navController)
                 }
             }
         }
     }
 }
-
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun NavigationComposable(context: Context, navController: NavHostController) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LittellemonTheme {
-        Greeting("Android")
+    val sharedPreferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
+    var startDestination = OnboardingDestination.route
+
+    if (sharedPreferences.getBoolean("userRegistered", false)) {
+        startDestination = HomeDestination.route
+    }
+
+    NavHost(navController = navController, startDestination = startDestination){
+        composable(OnboardingDestination.route){
+            Onboarding(context, navController)
+        }
+        composable(HomeDestination.route){
+            Home(navController)
+        }
+        composable(ProfileDestination.route){
+            Profile(context, navController)
+        }
     }
 }
+

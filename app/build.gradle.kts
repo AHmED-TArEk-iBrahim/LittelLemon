@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-kapt")
+    id ("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -50,6 +52,13 @@ android {
 }
 
 dependencies {
+    implementation( libs.ktor.client.android)
+    implementation( libs.ktor.client.content.negotiation)
+    implementation( libs.ktor.serialization.kotlinx.json)
+
+    implementation (libs.androidx.room.runtime)
+    implementation(libs.androidx.navigation.compose)
+    kapt( libs.androidx.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
